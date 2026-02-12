@@ -1,0 +1,29 @@
+{
+  "name": "test-companion-appium-tests",
+  "version": "1.0.0",
+  "description": "BrowserStack Appium tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "test:local": "mocha test/specs/*.js",
+    "test:skyscanner": "mocha test/specs/Skyscanner/*.js",
+    "test:bluesky": "mocha test/specs/Bluesky/*.js"
+  },
+  "keywords": [
+    "appium",
+    "browserstack",
+    "ios",
+    "testing"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@wdio/globals": "^8.27.0",
+    "appium": "^2.4.1",
+    "browserstack-node-sdk": "^1.33.0",
+    "dotenv": "^17.2.4",
+    "js-yaml": "^4.1.1",
+    "mocha": "^10.2.0",
+    "webdriverio": "^8.27.0"
+  }
+}

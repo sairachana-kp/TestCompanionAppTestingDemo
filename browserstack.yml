@@ -1,0 +1,19 @@
+userName: ${BROWSERSTACK_USERNAME}
+accessKey: ${BROWSERSTACK_ACCESS_KEY}
+
+projectName: Test Companion App Testing
+buildName: Test Companion App Test Suite
+parallelsPerPlatform: 1
+
+platforms:
+  - platformName: ios
+    deviceName: iPhone 15
+    platformVersion: "17"
+    app: bs://8be1a1d73549a6999f971bfacc1f07dfba0b17e2
+  - platformName: android
+    deviceName: Samsung Galaxy S23
+    platformVersion: "13.0"
+    app: bs://0ade8e3125f5e67a2ffb52408227e18837fbb55d
+
+framework: mocha
+browserstackAutomation: true
