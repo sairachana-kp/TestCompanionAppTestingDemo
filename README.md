@@ -1,12 +1,12 @@
-# Bluesky iOS Login Flow Test
+# BStackDemo Android Login Flow Test
 
-Automated test suite for testing the Bluesky iOS app login flow using Appium and BrowserStack.
+Automated test suite for testing the BStackDemo Android app login flow using Appium and BrowserStack.
 
 ## Prerequisites
 
 - Node.js (v14 or higher)
 - BrowserStack account with credentials
-- Bluesky iOS app uploaded to BrowserStack (App ID: `bs://8be1a1d73549a6999f971bfacc1f07dfba0b17e2`)
+- BStackDemo Android app uploaded to BrowserStack (App ID: `bs://f0579d931c6ecfc4221769c3d03c6d6f3b92a6f1`)
 
 ## Setup
 
@@ -79,12 +79,14 @@ npm test -- test/specs/BStackDemo/login.test.js
 
 The test suite covers the following scenarios:
 
-1. **Welcome Screen Display** - Verifies the app launches and displays the welcome screen
-2. **Navigation to Login** - Tests navigation from welcome screen to login screen
-3. **Login Form Elements** - Validates all login form elements are present
-4. **Credential Entry** - Tests entering username and password
-5. **Error Handling** - Verifies error message display for invalid credentials
-6. **Form Persistence** - Ensures form remains accessible after error
+1. **Welcome Screen Display** - Verifies the app launches and displays the BStackDemo login screen
+2. **Username Field Verification** - Validates the username field is visible and ready for input
+3. **Password Field Verification** - Ensures the password field is visible and accessible
+4. **Valid Credential Entry** - Tests entering valid username (demouser) and password (testpass123)
+5. **Successful Login** - Verifies the app successfully logs in and redirects to the product catalog
+6. **Product Catalog Display** - Confirms the product search field and product count are displayed
+7. **Navigation State** - Validates Products, Cart, and Profile tabs are visible in authenticated state
+8. **Session Authentication** - Ensures the user session is properly authenticated with full navigation access
 
 ## Test Results
 
@@ -96,14 +98,15 @@ Test results will be available in:
 
 ### BrowserStack Settings
 Edit `browserstack.yml` to modify:
-- Device selection (currently iPhone 15, iOS 17)
+- Device selection (currently Samsung Galaxy S23, Android 13)
 - Parallel execution settings
 - Project and build names
+- Platform settings (android or ios)
 
 ### Test Timeout
-Default timeout is 5 minutes per test. Modify in `test/specs/login.test.js`:
+Default timeout is 2 minutes per test. Modify in `test/specs/BStackDemo/login.test.js`:
 ```javascript
-this.timeout(300000); // milliseconds
+this.timeout(120000); // milliseconds
 ```
 
 ## Troubleshooting
@@ -119,17 +122,19 @@ this.timeout(300000); // milliseconds
    - Upload app using BrowserStack REST API or dashboard
 
 3. **Element Not Found**
-   - Elements use accessibility IDs (e.g., `~signInButton`)
-   - Verify element selectors match the app's accessibility identifiers
+   - Android elements use UiSelector format (e.g., `android=new UiSelector().text("Username")`)
+   - Elements can also be referenced by accessibility IDs (e.g., `~Login`)
+   - Verify element selectors match the app's UI elements
 
 ## Helper Functions
 
 The `test/helpers/driver.js` module provides:
-- `createDriver()` - Initialize WebDriver session
-- `safeClick(selector)` - Click with automatic wait
-- `safeType(selector, text)` - Type text with clear and wait
-- `getText(selector)` - Get element text
-- `elementExists(selector)` - Check element presence
+- `createDriver(platformType)` - Initialize WebDriver session for specified platform (android/ios)
+- `waitForElement(driver, selector, timeout)` - Wait for element to be displayed
+- `safeClick(driver, selector, timeout)` - Click element with automatic wait
+- `safeType(driver, selector, text, timeout)` - Type text with clear and wait
+- `getText(driver, selector, timeout)` - Get element text
+- `elementExists(driver, selector)` - Check if element is displayed
 
 ## Contributing
 
