@@ -9,7 +9,7 @@ platforms:
   - platformName: android
     deviceName: Samsung Galaxy S23
     platformVersion: "13.0"
-    app: bs://2f117fa94aa8d1e471672b34c97d17ace0903269
+    app: bs://f0579d931c6ecfc4221769c3d03c6d6f3b92a6f1
 
 framework: mocha
 browserstackAutomation: true
