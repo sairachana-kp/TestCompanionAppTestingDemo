@@ -4,9 +4,11 @@
   "description": "BrowserStack Appium tests",
   "main": "index.js",
   "scripts": {
-    "test": "mocha \"test/specs/**/*.js\"",
-    "test:local": "mocha \"test/specs/**/*.js\"",
-    "test:BStackDemo": "mocha \"test/specs/BStackDemo/*.js\""
+    "test": "mocha",
+    "test:local": "mocha",
+    "test:all": "mocha \"test/specs/**/*.js\"",
+    "test:file": "mocha --no-config",
+    "test:grep": "mocha \"test/specs/**/*.js\" --grep"
   },
   "keywords": [
     "appium",

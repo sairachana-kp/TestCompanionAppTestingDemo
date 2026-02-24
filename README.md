@@ -43,23 +43,14 @@ BROWSERSTACK_ACCESS_KEY=your_access_key
 
 ## Running Tests
 
-**IMPORTANT**: Always use specific test scripts to run individual test suites for efficiency and to save BrowserStack session minutes.
-
-### Run Specific Test Suites (Recommended)
-
-**Skyscanner Tests Only** (~1 minute):
-```bash
-npm run test:skyscanner
-```
-
-**Bluesky Tests Only** (~1 minute):
-```bash
-npm run test:bluesky
-```
-
-### Run All Tests (~2 minutes)
+### Run All Tests
 ```bash
 npm test
+```
+
+### Run All Specs (Explicit)
+```bash
+npm run test:all
 ```
 
 ### Run Locally (requires local Appium server)
@@ -67,54 +58,22 @@ npm test
 npm run test:local
 ```
 
-**Best Practice**: Use `npm run test:skyscanner` or `npm run test:bluesky` to run specific test suites instead of running all tests unnecessarily. This approach:
-- Saves execution time (1 min vs 2 min)
-- Reduces BrowserStack session usage
-- Provides faster feedback during development
-- Makes debugging easier by isolating test failures
-
-## Running Tests: Using package.json Scripts
-
-Your project uses npm scripts defined in package.json for running tests efficiently:
-
-- Run all tests:
-  ```bash
-  npm test
-  ```
-  (Runs all files in test/specs/*.js)
-
-- Run Skyscanner suite:
-  ```bash
-  npm run test:skyscanner
-  ```
-  (Runs all files in test/specs/Skyscanner/*.js)
-
-- Run Bluesky suite:
-  ```bash
-  npm run test:bluesky
-  ```
-  (Runs all files in test/specs/Bluesky/*.js)
-
 ## Running Individual Test Files
 
-You can now run a single test file using npm test, thanks to the updated package.json:
-
+Run a single test file:
 ```bash
-npm test test/specs/Skyscanner/skyscanner-flight-search.test.js
+npm run test:file -- test/specs/BStackDemo/login.test.js
 ```
 
-or
-
+Run a single test by name:
 ```bash
-npm test test/specs/Bluesky/login.test.js
+npm run test:grep -- "Exact test title"
 ```
 
-You can still use:
-- `npm run test:skyscanner` to run all Skyscanner tests
-- `npm run test:bluesky` to run all Bluesky tests
-- `npm test` to run all tests
-
-> The npm test command now accepts a file path, making it easy to run any individual test file.
+Tip: If you want to use npm test with a file path, pass arguments after `--`:
+```bash
+npm test -- test/specs/BStackDemo/login.test.js
+```
 
 ## Test Coverage
 
