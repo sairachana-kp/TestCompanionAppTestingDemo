@@ -1,0 +1,47 @@
+[90m2026-03-17T20:57:31.294Z[39m [96mINFO[39m [97m@wdio/browserstack-service[39m BrowserStack service started with id: d8da137c-e9eb-41e8-a5a9-20c553fdd281
+[90m2026-03-17T20:57:31.294Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m _options data: {"buildIdentifier":"${BUILD_NUMBER}","browserstackLocal":false}
+[90m2026-03-17T20:57:31.294Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m webdriver capabilities data: [{"platformName":"Android","appium:deviceName":"Samsung Galaxy S23","appium:platformVersion":"13.0","appium:app":"bs://f0579d931c6ecfc4221769c3d03c6d6f3b92a6f1","appium:automationName":"UiAutomator2","bstack:options":{"projectName":"Test Companion App Testing","buildName":"Test Companion App Test Build","sessionName":"BStackDemo Tests","debug":true,"networkLogs":true}}]
+[90m2026-03-17T20:57:31.294Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m _config data: {"rootDir":"/Users/rachana.kp/Desktop/Repos/Demos/TestCompanionAppTestingDemo","specs":["./test/specs/**/*.js"],"suites":{},"exclude":[],"capabilities":[],"logLevel":"error","logLevels":{},"groupLogsByTestSpec":false,"excludeDriverLogs":[],"bail":0,"waitforInterval":100,"waitforTimeout":10000,"framework":"mocha","reporters":["spec"],"services":[["browserstack",{"buildIdentifier":"${BUILD_NUMBER}","browserstackLocal":false}]],"maxInstances":100,"maxInstancesPerCapability":100,"injectGlobals":true,"filesToWatch":[],"connectionRetryTimeout":120000,"connectionRetryCount":3,"execArgv":[],"runnerEnv":{},"runner":"local","shard":{"current":1,"total":1},"specFileRetries":0,"specFileRetriesDelay":0,"specFileRetriesDeferred":false,"autoAssertOnTestEnd":true,"reporterSyncInterval":100,"reporterSyncTimeout":5000,"cucumberFeaturesWithLineNumbers":[],"mochaOpts":{"timeout":120000,"ui":"bdd"},"jasmineOpts":{"defaultTimeoutInterval":10000},"cucumberOpts":{"timeout":10000},"onPrepare":[],"onWorkerStart":[],"onWorkerEnd":[],"before":[null],"beforeSession":[null],"beforeSuite":[],"beforeHook":[],"beforeTest":[],"beforeCommand":[],"afterCommand":[],"afterTest":[null],"afterHook":[],"afterSuite":[],"afterSession":[],"after":[null],"onComplete":[],"onReload":[],"beforeAssertion":[],"afterAssertion":[],"beforeFeature":[],"beforeScenario":[],"beforeStep":[],"afterStep":[],"afterScenario":[],"afterFeature":[],"_":["run","run"],"$0":"/Users/rachana.kp/Desktop/Repos/Demos/TestCompanionAppTestingDemo/node_modules/.bin/wdio","config-path":"wdio.conf.js","user":"[REDACTED]","key":"[REDACTED]","hostname":"hub.browserstack.com","baseUrl":""}
+[90m2026-03-17T20:57:31.296Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Sending SDK event with data {
+  userName: '[REDACTED]',
+  accessKey: '[REDACTED]',
+  event_type: 'SDKTestAttempted',
+  detectedFramework: 'WebdriverIO-mocha',
+  event_properties: {
+    sdkRunId: 'd8da137c-e9eb-41e8-a5a9-20c553fdd281',
+    testhub_uuid: undefined,
+    language_framework: 'WebdriverIO_mocha',
+    referrer: 'WebdriverIO-mocha/9.26.0',
+    language: 'WebdriverIO',
+    languageVersion: 'v22.21.0',
+    buildName: 'Test Companion App Test Build',
+    buildIdentifier: 'undefined',
+    os: 'Darwin',
+    hostname: 'RachanaKP-GRXVFP9V44',
+    productMap: {
+      observability: true,
+      accessibility: null,
+      percy: false,
+      automate: true,
+      app_automate: false
+    },
+    product: [ 'observability', 'automate' ],
+    framework: 'mocha',
+    isCLIEnabled: false
+  }
+}
+[90m2026-03-17T20:57:31.698Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Funnel Event Response: "{\"message\":\"SDK Event recorded successfully\"}"
+[90m2026-03-17T20:57:31.698Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Funnel event success
+[90m2026-03-17T20:57:31.704Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Timestamp conversion for sdk:funnel:test-attempted: 432.835458 -> 1773781051295.6875 (timeOrigin: 1773781050862.852)
+[90m2026-03-17T20:57:31.700Z[39m [96mINFO[39m [97m@wdio/browserstack-service[39m startMain: Starting main process
+[90m2026-03-17T20:57:31.700Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Configuring Cli path.
+[90m2026-03-17T20:57:31.700Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m File /Users/rachana.kp/.browserstack already exist
+[90m2026-03-17T20:57:31.701Z[39m [96mINFO[39m [97m@wdio/browserstack-service[39m Current CLI Path Found: /Users/rachana.kp/.browserstack/cli/binary-macos-arm64
+[90m2026-03-17T20:57:32.273Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m response {"success":true,"current_cli_version":"1.22.5","updated_cli_version":"1.24.6","url":"https://sdk-assets.browserstack.com/binary-macos-arm64-1.24.6.zip"}
+[90m2026-03-17T20:57:32.279Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Timestamp conversion for sdk:cli:check-update: 838.445708 -> 1773781051701.2979 (timeOrigin: 1773781050862.852)
+[90m2026-03-17T20:57:32.273Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Need to update binary, current binary version: 1.22.5
+[90m2026-03-17T20:57:32.274Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Downloading SDK binary from: https://sdk-assets.browserstack.com/binary-macos-arm64-1.24.6.zip
+[90m2026-03-17T20:57:32.274Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Binary already exists after acquiring lock: /Users/rachana.kp/.browserstack/cli/binary-macos-arm64
+[90m2026-03-17T20:57:32.275Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Resolved binary path: /Users/rachana.kp/.browserstack/cli/binary-macos-arm64
+[90m2026-03-17T20:57:32.275Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m spawning command='/Users/rachana.kp/.browserstack/cli/binary-macos-arm64,sdk'
+[90m2026-03-17T20:57:32.279Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Timestamp conversion for sdk:cli:download: 1411.339166 -> 1773781052274.1912 (timeOrigin: 1773781050862.852)
