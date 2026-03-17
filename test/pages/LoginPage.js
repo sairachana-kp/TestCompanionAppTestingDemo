@@ -1,10 +1,4 @@
-const { waitForElement } = require('../helpers/driver');
-
 class LoginPage {
-  constructor(driver) {
-    this.driver = driver;
-  }
-
   // Selectors
   get selectors() {
     return {
@@ -18,19 +12,27 @@ class LoginPage {
 
   // Element getters
   async getAppTitle() {
-    return await waitForElement(this.driver, this.selectors.appTitle);
+    const element = await $(this.selectors.appTitle);
+    await element.waitForDisplayed({ timeout: 10000 });
+    return element;
   }
 
   async getUsernameField() {
-    return await waitForElement(this.driver, this.selectors.usernameField);
+    const element = await $(this.selectors.usernameField);
+    await element.waitForDisplayed({ timeout: 10000 });
+    return element;
   }
 
   async getPasswordField() {
-    return await waitForElement(this.driver, this.selectors.passwordField);
+    const element = await $(this.selectors.passwordField);
+    await element.waitForDisplayed({ timeout: 10000 });
+    return element;
   }
 
   async getLoginButton() {
-    return await waitForElement(this.driver, this.selectors.loginButton);
+    const element = await $(this.selectors.loginButton);
+    await element.waitForDisplayed({ timeout: 10000 });
+    return element;
   }
 
   // Page actions
@@ -67,12 +69,12 @@ class LoginPage {
   }
 
   async getEnteredUsername(username) {
-    const enteredText = await this.driver.$(`android=new UiSelector().text("${username}")`);
+    const enteredText = await $(`android=new UiSelector().text("${username}")`);
     return await enteredText.getText();
   }
 
   async isPasswordMasked() {
-    const passwordField = await this.driver.$('android=new UiSelector().className("android.widget.EditText").instance(1)');
+    const passwordField = await $('android=new UiSelector().className("android.widget.EditText").instance(1)');
     const passwordText = await passwordField.getText();
     return passwordText.includes('•');
   }

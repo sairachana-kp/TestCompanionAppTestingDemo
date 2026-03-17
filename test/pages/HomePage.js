@@ -1,10 +1,4 @@
-const { waitForElement } = require('../helpers/driver');
-
 class HomePage {
-  constructor(driver) {
-    this.driver = driver;
-  }
-
   // Selectors
   get selectors() {
     return {
@@ -19,28 +13,43 @@ class HomePage {
 
   // Element getters
   async getSearchField() {
-    return await waitForElement(this.driver, this.selectors.searchField);
+    const element = await $(this.selectors.searchField);
+    await element.waitForDisplayed({ timeout: 10000 });
+    return element;
   }
 
   async getProductCount() {
-    return await waitForElement(this.driver, this.selectors.productCount);
+    const element = await $(this.selectors.productCount);
+    await element.waitForDisplayed({ timeout: 10000 });
+    return element;
   }
 
   async getProductsTab() {
-    return await waitForElement(this.driver, this.selectors.productsTab);
+    const element = await $(this.selectors.productsTab);
+    await element.waitForDisplayed({ timeout: 10000 });
+    return element;
   }
 
   async getCartTab() {
-    return await waitForElement(this.driver, this.selectors.cartTab);
+    const element = await $(this.selectors.cartTab);
+    await element.waitForDisplayed({ timeout: 10000 });
+    return element;
   }
 
   async getProfileTab() {
-    return await waitForElement(this.driver, this.selectors.profileTab);
+    const element = await $(this.selectors.profileTab);
+    await element.waitForDisplayed({ timeout: 10000 });
+    return element;
   }
 
   async getAddToCartButton(productName) {
-    const selector = `android=new UiSelector().descriptionContains("${productName}").childSelector(new UiSelector().clickable(true).instance(0))`;
-    return await waitForElement(this.driver, selector);
+    // Updated selector to match actual app structure
+    // Product containers have content-desc like "iPhone 12, Apple, $799.00"
+    // Need to include space in product name and use brand for uniqueness
+    const selector = `android=new UiSelector().descriptionContains("${productName}, Apple").childSelector(new UiSelector().clickable(true))`;
+    const element = await $(selector);
+    await element.waitForDisplayed({ timeout: 10000 });
+    return element;
   }
 
   // Page state checks
