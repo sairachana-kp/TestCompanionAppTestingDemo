@@ -2,7 +2,7 @@ userName: ${BROWSERSTACK_USERNAME}
 accessKey: ${BROWSERSTACK_ACCESS_KEY}
 
 projectName: Test Companion App Testing
-buildName: BStackDemo Tests
+buildName: Test Companion App Tests Build
 parallelsPerPlatform: 1
 
 platforms:
