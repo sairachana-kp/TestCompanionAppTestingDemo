@@ -43,9 +43,6 @@ class HomePage {
   }
 
   async getAddToCartButton(productName) {
-    // Updated selector to match actual app structure
-    // Product containers have content-desc like "iPhone 12, Apple, $799.00"
-    // Need to include space in product name and use brand for uniqueness
     const selector = `android=new UiSelector().descriptionContains("${productName}, Apple").childSelector(new UiSelector().clickable(true))`;
     const element = await $(selector);
     await element.waitForDisplayed({ timeout: 10000 });
