@@ -21,7 +21,7 @@ exports.config = {
       platformName: 'Android',
       'appium:deviceName': 'Samsung Galaxy S23',
       'appium:platformVersion': '13.0',
-      'appium:app': 'bs://f0579d931c6ecfc4221769c3d03c6d6f3b92a6f1',
+      'appium:app': 'bs://f23db8401da50482dfed3ff41a5608e69c1ab629',
       'appium:automationName': 'UiAutomator2',
       'bstack:options': {
         projectName: 'Test Companion App Testing',

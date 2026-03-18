@@ -55,7 +55,7 @@ describe('BStackDemo - Add to Cart', function() {
 
       // Step 6: Verify cart badge shows item count
       console.log('Step 6: Verifying cart badge shows item count...');
-      const cartBadge = await $('android=new UiSelector().descriptionContains("iPhone12").childSelector(new UiSelector().text("1"))');
+      const cartBadge = await $('android=new UiSelector().descriptionContains(", 1").childSelector(new UiSelector().text("1"))');
       await cartBadge.waitForDisplayed({ timeout: 10000 });
       const badgeText = await cartBadge.getText();
       assert.strictEqual(badgeText, '1', 'Cart badge should show 1 item');
