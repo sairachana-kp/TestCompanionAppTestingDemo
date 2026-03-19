@@ -1,67 +1,69 @@
 const assert = require('assert');
+const { createDriver, updateSessionStatus } = require('../../helpers/driver');
 const LoginPage = require('../../pages/LoginPage');
 const HomePage = require('../../pages/HomePage');
 const { TEST_CREDENTIALS } = require('../../data/testData');
 
-describe('BStackDemo - Add to Cart', function() {
-  let loginPage;
-  let homePage;
+async function run() {
+  let driver;
 
-  before(async function() {
-    // Initialize Page Objects
-    loginPage = new LoginPage();
-    homePage = new HomePage();
-    
-    // Wait for app to fully load
+  try {
+    driver = await createDriver();
+    const loginPage = new LoginPage(driver);
+    const homePage = new HomePage(driver);
+
     await loginPage.getAppTitle();
+
+    console.log('Step 1: Logging in to BStackDemo...');
+    await loginPage.enterUsername(TEST_CREDENTIALS.username);
+    await loginPage.enterPassword(TEST_CREDENTIALS.password);
+    await loginPage.clickLoginButton();
+
+    await homePage.verifyHomePageLoaded();
+
+    console.log('Step 2: Verifying product listing...');
+    const productCountText = await homePage.getProductCountText();
+    assert.ok(productCountText.includes('Product(s) found'), 'Product listing should be displayed');
+
+    console.log('Step 3: Adding iPhone 12 to cart...');
+    await homePage.addProductToCart('iPhone12');
+
+    console.log('Step 4: Verifying success dialog...');
+    const successDialog = await driver.$('android=new UiSelector().resourceId("android:id/message")');
+    await successDialog.waitForDisplayed({ timeout: 10000 });
+    const dialogText = await successDialog.getText();
+    assert.strictEqual(dialogText, 'Added to cart!', 'Success message should be displayed');
+
+    console.log('Step 5: Dismissing success dialog...');
+    const okButton = await driver.$('android=new UiSelector().resourceId("android:id/button1")');
+    await okButton.waitForDisplayed({ timeout: 5000 });
+    await okButton.click();
+
+    console.log('Step 6: Verifying cart badge shows item count...');
+    const cartBadge = await driver.$('android=new UiSelector().descriptionContains(", 1").childSelector(new UiSelector().text("1"))');
+    await cartBadge.waitForDisplayed({ timeout: 10000 });
+    const badgeText = await cartBadge.getText();
+    assert.strictEqual(badgeText, '1', 'Cart badge should show 1 item');
+
+    await updateSessionStatus(driver, true, 'Add to cart test passed');
+    console.log('SUCCESS: Product added to cart');
+  } catch (error) {
+    if (driver) {
+      await updateSessionStatus(driver, false, error.message || 'Add to cart test failed');
+    }
+    throw error;
+  } finally {
+    if (driver) {
+      await driver.deleteSession();
+    }
+  }
+}
+
+module.exports = { run };
+
+if (require.main === module) {
+  run().catch((error) => {
+    console.error(error && error.stack ? error.stack : error);
+    process.exit(1);
   });
-
-  describe('Add Product to Cart', function() {
-    it('Should successfully add a product to cart', async function() {
-      // Step 1: Login to the application
-      console.log('Step 1: Logging in to BStackDemo...');
-      await loginPage.enterUsername(TEST_CREDENTIALS.username);
-      await loginPage.enterPassword(TEST_CREDENTIALS.password);
-      await loginPage.clickLoginButton();
-      
-      await homePage.verifyHomePageLoaded();
-      console.log('✓ User logged in successfully');
-
-      // Step 2: Verify product listing is displayed
-      console.log('Step 2: Verifying product listing...');
-      const productCountText = await homePage.getProductCountText();
-      assert.ok(productCountText.includes('Product(s) found'), 'Product listing should be displayed');
-      console.log(`✓ Product listing displayed: ${productCountText}`);
-
-      // Step 3: Add first product (iPhone 12) to cart
-      console.log('Step 3: Adding iPhone 12 to cart...');
-      await homePage.addProductToCart('iPhone12');
-      console.log('✓ Clicked add to cart button');
-
-      // Step 4: Verify success dialog appears
-      console.log('Step 4: Verifying success dialog...');
-      const successDialog = await $('android=new UiSelector().resourceId("android:id/message")');
-      await successDialog.waitForDisplayed({ timeout: 10000 });
-      const dialogText = await successDialog.getText();
-      assert.strictEqual(dialogText, 'Added to cart!', 'Success message should be displayed');
-      console.log('✓ Success dialog displayed: "Added to cart!"');
-
-      // Step 5: Dismiss the success dialog
-      console.log('Step 5: Dismissing success dialog...');
-      const okButton = await $('android=new UiSelector().resourceId("android:id/button1")');
-      await okButton.waitForDisplayed({ timeout: 5000 });
-      await okButton.click();
-      console.log('✓ Success dialog dismissed');
-
-      // Step 6: Verify cart badge shows item count
-      console.log('Step 6: Verifying cart badge shows item count...');
-      const cartBadge = await $('android=new UiSelector().descriptionContains(", 1").childSelector(new UiSelector().text("1"))');
-      await cartBadge.waitForDisplayed({ timeout: 10000 });
-      const badgeText = await cartBadge.getText();
-      assert.strictEqual(badgeText, '1', 'Cart badge should show 1 item');
-      console.log('✓ Cart badge shows: 1 item');
-
-      console.log('\n✅ Test completed successfully! Product added to cart.');
-    });
-  });
-});
+}

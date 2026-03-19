@@ -1,72 +1,30 @@
 require('dotenv').config({ quiet: true });
+const fs = require('fs');
+const path = require('path');
+const yaml = require('js-yaml');
 
-exports.config = {
-  user: process.env.BROWSERSTACK_USERNAME,
-  key: process.env.BROWSERSTACK_ACCESS_KEY,
+const browserstackConfigPath = path.join(process.cwd(), 'browserstack.yml');
+const browserstackConfig = yaml.load(fs.readFileSync(browserstackConfigPath, 'utf8'));
+const platform = browserstackConfig.platforms[0];
 
+module.exports = {
   hostname: 'hub.browserstack.com',
-
-  services: [
-    [
-      'browserstack',
-      {
-        buildIdentifier: '${BUILD_NUMBER}',
-        browserstackLocal: false,
-      }
-    ]
-  ],
-
-  capabilities: [
-    {
-      platformName: 'Android',
-      'appium:deviceName': 'Samsung Galaxy S23',
-      'appium:platformVersion': '13.0',
-      'appium:app': 'bs://f23db8401da50482dfed3ff41a5608e69c1ab629',
-      'appium:automationName': 'UiAutomator2',
-      'bstack:options': {
-        projectName: 'Test Companion App Testing',
-        buildName: 'Test Companion App Test Build',
-        sessionName: 'BStackDemo Tests',
-        debug: true,
-        networkLogs: true,
-      }
-    }
-  ],
-
-  specs: ['./test/specs/**/*.js'],
-  exclude: [],
-
+  port: 443,
+  protocol: 'https',
+  path: '/wd/hub',
   logLevel: 'error',
-  bail: 0,
-  baseUrl: '',
-  waitforTimeout: 10000,
-  connectionRetryTimeout: 120000,
-  connectionRetryCount: 3,
-
-  framework: 'mocha',
-  reporters: ['spec'],
-
-  mochaOpts: {
-    ui: 'bdd',
-    timeout: 120000,
-  },
-
-  // Hooks
-  beforeSession: function (config, capabilities, specs) {
-    console.log('Starting WebDriverIO session...');
-  },
-
-  before: function (capabilities, specs) {
-    console.log('Test session started');
-  },
-
-  afterTest: async function(test, context, { error, result, duration, passed, retries }) {
-    if (error) {
-      await browser.takeScreenshot();
-    }
-  },
-
-  after: function (result, capabilities, specs) {
-    console.log('Test session completed');
+  capabilities: {
+    platformName: platform.platformName,
+    'appium:automationName': platform.platformName === 'android' ? 'UiAutomator2' : 'XCUITest',
+    'appium:deviceName': platform.deviceName,
+    'appium:platformVersion': platform.platformVersion,
+    'appium:app': platform.app,
+    'bstack:options': {
+      projectName: browserstackConfig.projectName,
+      buildName: browserstackConfig.buildName,
+      sessionName: 'BStackDemo App Automate Session',
+      userName: process.env.BROWSERSTACK_USERNAME,
+      accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
+    },
   },
 };

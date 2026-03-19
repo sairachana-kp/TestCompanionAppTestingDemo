@@ -1,4 +1,8 @@
 class HomePage {
+  constructor(driver) {
+    this.driver = driver;
+  }
+
   // Selectors
   get selectors() {
     return {
@@ -13,38 +17,40 @@ class HomePage {
 
   // Element getters
   async getSearchField() {
-    const element = await $(this.selectors.searchField);
+    const element = await this.driver.$(this.selectors.searchField);
     await element.waitForDisplayed({ timeout: 10000 });
     return element;
   }
 
   async getProductCount() {
-    const element = await $(this.selectors.productCount);
+    const element = await this.driver.$(this.selectors.productCount);
     await element.waitForDisplayed({ timeout: 10000 });
     return element;
   }
 
   async getProductsTab() {
-    const element = await $(this.selectors.productsTab);
+    const element = await this.driver.$(this.selectors.productsTab);
     await element.waitForDisplayed({ timeout: 10000 });
     return element;
   }
 
   async getCartTab() {
-    const element = await $(this.selectors.cartTab);
+    const element = await this.driver.$(this.selectors.cartTab);
     await element.waitForDisplayed({ timeout: 10000 });
     return element;
   }
 
   async getProfileTab() {
-    const element = await $(this.selectors.profileTab);
+    const element = await this.driver.$(this.selectors.profileTab);
     await element.waitForDisplayed({ timeout: 10000 });
     return element;
   }
 
   async getAddToCartButton(productName) {
+    // Fix: Ensure product name matches the actual content-desc format (e.g., "iPhone 12" with space)
+    // The content-desc format is: "iPhone 12, Apple, $799.00"
     const selector = `android=new UiSelector().descriptionContains("${productName}, Apple").childSelector(new UiSelector().clickable(true))`;
-    const element = await $(selector);
+    const element = await this.driver.$(selector);
     await element.waitForDisplayed({ timeout: 10000 });
     return element;
   }

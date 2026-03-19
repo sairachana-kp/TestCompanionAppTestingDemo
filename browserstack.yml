@@ -11,5 +11,5 @@ platforms:
     platformVersion: "13.0"
     app: bs://f23db8401da50482dfed3ff41a5608e69c1ab629
 
-framework: mocha
+framework: webdriverio
 browserstackAutomation: true
