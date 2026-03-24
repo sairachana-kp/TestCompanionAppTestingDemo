@@ -4,7 +4,8 @@ Automated test suite for testing the BStackDemo Android app login flow using App
 
 ## Prerequisites
 
-- Node.js (v14 or higher)
+- Node.js (v20.20.1 or higher)
+- nvm (recommended)
 - BrowserStack account with credentials
 - BStackDemo Android app uploaded to BrowserStack (App ID: `bs://f0579d931c6ecfc4221769c3d03c6d6f3b92a6f1`)
 
@@ -12,6 +13,7 @@ Automated test suite for testing the BStackDemo Android app login flow using App
 
 1. Install dependencies:
 ```bash
+nvm use
 npm install
 ```
 
