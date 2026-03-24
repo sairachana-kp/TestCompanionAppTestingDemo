@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ quiet: true });
 const { remote } = require('webdriverio');
 const wdioConfig = require('../../wdio.conf');
 

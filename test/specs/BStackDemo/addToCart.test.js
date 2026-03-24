@@ -61,6 +61,12 @@ async function run() {
 
 module.exports = { run };
 
+describe('BStackDemo add to cart', () => {
+  test('adds iPhone 12 to the cart', async () => {
+    await run();
+  });
+});
+
 if (require.main === module) {
   run().catch((error) => {
     console.error(error && error.stack ? error.stack : error);

@@ -55,6 +55,12 @@ async function run() {
 
 module.exports = { run };
 
+describe('BStackDemo login', () => {
+  test('logs in successfully', async () => {
+    await run();
+  });
+});
+
 if (require.main === module) {
   run().catch((error) => {
     console.error(error && error.stack ? error.stack : error);

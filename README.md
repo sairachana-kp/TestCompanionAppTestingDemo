@@ -1,6 +1,6 @@
 # Test Companion App Automate Tests
 
-Automated mobile test suite for the BStackDemo app using direct WebdriverIO sessions on BrowserStack App Automate.
+Automated mobile test suite for the BStackDemo app using Jest plus direct WebdriverIO sessions on BrowserStack App Automate.
 
 ## Prerequisites
 
@@ -25,6 +25,7 @@ BROWSERSTACK_ACCESS_KEY=your_access_key
 
 Notes:
 - Device and app settings are read from `browserstack.yml`.
+- Jest is the test runner.
 - Test scripts create BrowserStack sessions directly via WebdriverIO `remote()`.
 
 ## Running Tests
@@ -54,6 +55,7 @@ npm run test:add-to-cart
 .
 ├── browserstack.yml
 ├── wdio.conf.js
+├── jest.config.js
 ├── run/
 │   └── runTest.js
 ├── test/

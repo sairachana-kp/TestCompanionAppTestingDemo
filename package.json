@@ -4,11 +4,11 @@
   "description": "WebdriverIO App Automate tests",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test:all",
-    "test:all": "node run/runTest.js test/specs/BStackDemo/login.test.js && node run/runTest.js test/specs/BStackDemo/addToCart.test.js",
-    "test:file": "node run/runTest.js",
-    "test:login": "node run/runTest.js test/specs/BStackDemo/login.test.js",
-    "test:add-to-cart": "node run/runTest.js test/specs/BStackDemo/addToCart.test.js"
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand",
+    "test:all": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand",
+    "test:file": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand",
+    "test:login": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand test/specs/BStackDemo/login.test.js",
+    "test:add-to-cart": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand test/specs/BStackDemo/addToCart.test.js"
   },
   "keywords": [
     "appium",
@@ -22,6 +22,7 @@
   "devDependencies": {
     "dotenv": "^17.2.4",
     "js-yaml": "^4.1.1",
+    "jest": "^30.0.5",
     "webdriverio": "^9.26.1"
   }
 }
