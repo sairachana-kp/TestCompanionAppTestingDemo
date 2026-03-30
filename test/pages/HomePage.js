@@ -4,10 +4,10 @@ class HomePage {
     return {
       searchField: 'android=new UiSelector().text("Search products...")',
       productCount: 'android=new UiSelector().textContains("Product(s) found")',
-      productsTab: 'android=new UiSelector().descriptionContains("Products")',
-      cartTab: 'android=new UiSelector().descriptionContains("Cart")',
-      profileTab: 'android=new UiSelector().descriptionContains("Profile")',
-      ordersTab: 'android=new UiSelector().descriptionContains("Orders")'
+      productsTab: 'android=new UiSelector().description("Products tab")',
+      cartTab: 'android=new UiSelector().description("Shopping cart tab")',
+      profileTab: 'android=new UiSelector().description("User profile tab")',
+      ordersTab: 'android=new UiSelector().description("Orders history tab")'
     };
   }
 
@@ -43,7 +43,7 @@ class HomePage {
   }
 
   async getAddToCartButton(productName) {
-    const selector = `android=new UiSelector().descriptionContains("${productName}, Apple").childSelector(new UiSelector().clickable(true))`;
+    const selector = `android=new UiSelector().descriptionContains("${productName}, Apple").childSelector(new UiSelector().clickable(true).className("android.view.ViewGroup"))`;
     const element = await $(selector);
     await element.waitForDisplayed({ timeout: 10000 });
     return element;
