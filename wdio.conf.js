@@ -36,7 +36,7 @@ exports.config = {
   specs: ['./test/specs/**/*.js'],
   exclude: [],
 
-  logLevel: 'error',
+  logLevel: 'warn',
   bail: 0,
   baseUrl: '',
   waitforTimeout: 10000,
